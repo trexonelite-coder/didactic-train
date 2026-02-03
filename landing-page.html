@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolWork Connect | Master Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --neon-purple: #bc13fe;
+            --cyber-cyan: #00f2ff;
+            --plasma-pink: #ff00ff;
+            --deep-space: #020205;
+            --glass-bright: rgba(255, 255, 255, 0.08);
+        }
+
+        * { cursor: url('image_c62a69.png'), auto !important; box-sizing: border-box; }
+        body { background-color: var(--deep-space); color: white; font-family: 'Space Grotesk', sans-serif; margin: 0; overflow-x: hidden; }
+
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #0a001a 0%, #020205 100%); }
+
+        .section { display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 60px 20px; }
+
+        .glitch-title { font-family: 'Orbitron'; font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 12px; filter: drop-shadow(0 0 15px var(--neon-purple)); margin-bottom: 30px; }
+
+        /* 📺 PREMIUM VIDEO CONTAINER */
+        .video-container {
+            position: relative; padding: 3px; border-radius: 40px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--cyber-cyan));
+            width: 95%; max-width: 1000px; margin-bottom: 80px;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .video-deck { background: var(--deep-space); border-radius: 38px; overflow: hidden; position: relative; }
+        video { width: 100%; display: block; border-radius: 38px; }
+
+        #overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 20; display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(15px); border-radius: 38px;
+        }
+
+        /* 📄 THE MASTER REPORT SLATE */
+        .master-report {
+            width: 95%; max-width: 900px; background: var(--glass-bright);
+            border: 2px solid rgba(0, 242, 255, 0.2); border-radius: 20px;
+            padding: 50px; position: relative; backdrop-filter: blur(30px);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .report-header {
+            border-bottom: 1px solid var(--cyber-cyan); padding-bottom: 20px; margin-bottom: 30px;
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+
+        .report-header h2 { font-family: 'Orbitron'; margin: 0; color: var(--cyber-cyan); font-size: 1.8rem; }
+        
+        .report-body { text-align: left; line-height: 1.8; }
+        .data-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 0; }
+        .label { font-family: 'Orbitron'; width: 200px; color: var(--plasma-pink); font-size: 0.8rem; }
+        .content { flex: 1; opacity: 0.9; }
+
+        .stamp {
+            position: absolute; top: 40px; right: 40px; border: 3px solid var(--neon-purple);
+            color: var(--neon-purple); padding: 10px; font-family: 'Orbitron';
+            transform: rotate(15deg); font-weight: 900; opacity: 0.6;
+        }
+
+        .hud-bar {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; background: rgba(0,0,0,0.8); border-radius: 50px; padding: 10px 20px;
+            display: flex; align-items: center; gap: 15px; border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .progress-fill { height: 5px; background: var(--cyber-cyan); box-shadow: 0 0 10px var(--cyber-cyan); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <section class="section">
+        <h1 class="glitch-title" data-aos="fade-down">NEURAL INTERFACE</h1>
+        
+        <div class="video-container" id="mainDeck" data-aos="zoom-in">
+            <div id="overlay" onclick="startExperience()">
+                <div style="text-align:center;">
+                    <h2 style="font-family:'Orbitron'; font-size: 2.5rem; margin:0;">[ INITIALIZE ]</h2>
+                    <p style="letter-spacing:4px; font-size: 0.8rem;">ACCESSING YEAR 5 SECTOR</p>
+                </div>
+            </div>
+
+            <div class="video-deck">
+                <video id="vid" loop playsinline>
+                    <source src="0203.mp4" type="video/mp4">
+                </video>
+                <div class="hud-bar">
+                    <button onclick="togglePlay()" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">⏯</button>
+                    <div style="flex-grow:1; background:rgba(255,255,255,0.1); height:5px; border-radius:10px;">
+                        <div id="fill" class="progress-fill" style="width:0%"></div>
+                    </div>
+                    <button onclick="toggleFullScreen()" style="background:none; border:none; color:white; font-size:1rem; cursor:pointer;">⛶</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="master-report" data-aos="fade-up">
+            <div class="stamp">VERIFIED 2070</div>
+            <div class="report-header">
+                <div>
+                    <h2>ACADEMIC TERM SUMMARY</h2>
+                    <span style="font-size: 0.7rem; opacity: 0.5;">DOCUMENT ID: SWC-0203-YEAR5</span>
+                </div>
+                <div style="text-align: right;">
+                    <div style="color:var(--cyber-cyan); font-family:'Orbitron';">ARCHITECT: RAYYAN</div>
+                    <div style="font-size: 0.7rem; opacity: 0.5;">LOCATION: SHARJAH AL JAZZAT</div>
+                </div>
+            </div>
+
+            <div class="report-body">
+                <div class="data-row">
+                    <div class="label">SUBJECT ENTITY</div>
+                    <div class="content">Ibrahim | Student ID: 5-A/B</div>
+                </div>
+                <div class="data-row">
+                    <div class="label">SUPERVISOR</div>
+                    <div class="content">Miss Hala | Lead Instructor</div>
+                </div>
+                <div class="data-row">
+                    <div class="label">WORKFLOW SUMMARY</div>
+                    <div class="content">Successful deployment of the <b>SchoolWork Connect</b> bridge. Subject demonstrated real-time homework digitization by capturing physical paper documents and uploading them directly to the neural cloud. System authenticated via secure 6-digit rotation codes.</div>
+                </div>
+                <div class="data-row">
+                    <div class="label">NEURAL INTERACTION</div>
+                    <div class="content">Critical event logged: Subject reported high cognitive load (<i>"Too hard mam"</i>). Protocol <b>'Adaptive Instruction'</b> was triggered. Miss Hala successfully intervened with a system override to adjust difficulty levels, ensuring 100% student retention and successful task submission.</div>
+                </div>
+                <div class="data-row">
+                    <div class="label">FINAL STATUS</div>
+                    <div class="content" style="color: var(--cyber-cyan); font-weight: bold;">● SYSTEM SYNCED & APPROVED</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60 },
+                "color": { "value": "#00f2ff" },
+                "opacity": { "value": 0.3 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#bc13fe", "opacity": 0.2 },
+                "move": { "enable": true, "speed": 1.5 }
+            }
+        });
+
+        const v = document.getElementById('vid');
+        const fill = document.getElementById('fill');
+        const overlay = document.getElementById('overlay');
+        const deck = document.getElementById('mainDeck');
+
+        function startExperience() {
+            overlay.style.display = 'none';
+            v.muted = false;
+            v.play();
+        }
+
+        function togglePlay() { v.paused ? v.play() : v.pause(); }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) deck.requestFullscreen();
+            else document.exitFullscreen();
+        }
+
+        v.addEventListener('timeupdate', () => { fill.style.width = (v.currentTime / v.duration) * 100 + '%'; });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+            if (e.key.toLowerCase() === 'f') { toggleFullScreen(); }
+        });
+    </script>
+</body>
+</html>
